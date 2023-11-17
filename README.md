@@ -10,7 +10,7 @@ To install run the following steps:
 2. Clone the repo:
 
 ```sh
-git clone git@github.com:zeionara/hypr.git
+git clone git@github.com:zeionara/hypr.git "$HOME/hypr"
 ```
 
 3. Setup the configuration files - run script `setup.sh`:
