@@ -23,15 +23,58 @@ git clone git@github.com:zeionara/hypr.git "$HOME/hypr"
 
 To install on `gentoo` the main steps are the following:
 
-1. Install `hyprland` and `waybar` (`waybar` requires `experimental` flag to support `workspaces` listing, also see other flags on the package page which may be useful):
+1. Set up `accept-keywords` for `alacritty`:
 
 ```sh
-sudo emerge --ask gui-wm/hyprland gui-apps/waybar
+x11-terms/alacritty ~amd64
 ```
 
-2. Copy the configuration files according to instructions above;
+2. Set up `use` flags for `waybar`:
 
-3. Set up `xdg desktop portal`:
+```sh
+gui-apps/waybar network pulseaudio tray wifi experimental
+```
+
+3. Enable screencasting use flags globally in `make.conf`:
+
+```sh
+USE="pipewire icu screencast vaapi v4l openh264 nvenc vlc"
+```
+
+4. Disable `vaapi` use flag for `vlc`:
+
+```sh
+media-video/vlc -vaapi
+```
+
+5. Upgrade the system:
+
+```sh
+sudo emerge --sync
+sudo emerge --ask --verbose --update --deep --newuse @world
+```
+
+6. Install the new packages:
+
+```sh
+sudo emerge --ask gui-wm/hyprland gui-apps/waybar gui-apps/grim gui-apps/slurp gui-apps/wl-clipboard gui-apps/mako gui-apps/wf-recorder media-libs/gstreamer
+```
+
+7. Copy the configuration files for [hyprland](https://github.com/zeionara/hypr/blob/master/setup.sh) and [waybar](https://github.com/zeionara/waybar/blob/master/setup.sh) making the environment-specific tweaks;
+
+8. Install `xdg portal`:
+
+Compile from source (recommended):
+
+```sh
+git clone --recursive https://github.com/hyprwm/xdg-desktop-portal-hyprland "$HOME/xdg-desktop-portal-hyprland"
+cd "$HOME/xdg-desktop-portal-hyprland"
+make all
+sudo make install
+sudo ln /usr/lib/xdg-desktop-portal-hyprland /usr/libexec/
+```
+
+Or install from `guru`:
 
 ```sh
 sudo emerge --ask app-eselect/eselect-repository
@@ -47,13 +90,7 @@ sudo emerge --ask gui-libs/xdg-desktop-portal-hyprland
 > sudo ln -s /usr/lib64/pkgconfig/libelogind.pc /usr/lib64/pkgconfig/elogind.pc
 > ```
 
-4. Install additional software (for taking screenshots, enabling notifications, recoding screen and tracing web-camera output as a native window):
-
-```sh
-sudo emerge --ask gui-apps/grim gui-apps/slurp gui-apps/wl-clipboard gui-apps/mako gui-apps/wf-recorder media-libs/gstreamer
-```
-
-4. Restart `Hyprland` on `dbus`:
+9. Log-out and log-in or start `Hyprland` on `dbus` manually:
 
 ```sh
 dbus-launch Hyprland
