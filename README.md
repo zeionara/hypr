@@ -47,10 +47,10 @@ sudo emerge --ask gui-libs/xdg-desktop-portal-hyprland
 > sudo ln -s /usr/lib64/pkgconfig/libelogind.pc /usr/lib64/pkgconfig/elogind.pc
 > ```
 
-4. Install additional software (for taking screenshots):
+4. Install additional software (for taking screenshots, enabling notifications, recoding screen and tracing web-camera output as a native window):
 
 ```sh
-sudo emerge --ask gui-apps/grim gui-apps/slurp gui-apps/wl-clipboard
+sudo emerge --ask gui-apps/grim gui-apps/slurp gui-apps/wl-clipboard gui-apps/mako gui-apps/wf-recorder media-libs/gstreamer
 ```
 
 4. Restart `Hyprland` on `dbus`:
