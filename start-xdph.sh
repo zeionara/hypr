@@ -10,11 +10,11 @@ logger 'killed all xdg-desktop'
 
 sleep 1
 
-# /usr/libexec/xdg-desktop-portal-hyprland &
-# logger 'xdg-desktop-portal-hyprland started'
+/usr/libexec/xdg-desktop-portal-hyprland &
+logger 'xdg-desktop-portal-hyprland started'
 
-/usr/libexec/xdg-desktop-portal-wlr &
-logger 'xdg-desktop-portal-wlr started'
+# /usr/libexec/xdg-desktop-portal-wlr &
+# logger 'xdg-desktop-portal-wlr started'
 
 sleep 2
 
