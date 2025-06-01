@@ -7,4 +7,5 @@ if test -f "$config"; then
     mv "$config" "$config.old"
 fi
 
-ln "$HOME/hypr/hyprland.conf" "$config"
+mv "$HOME/hypr/hyprland.conf" $config
+ln $config "$HOME/hypr/hyprland.conf"
